@@ -36,7 +36,7 @@ function App() {
   };
   const fetchdata = (data) => {
     var url =
-      "http://nodejsapp-env.eba-pryadgyd.us-east-2.elasticbeanstalk.com/api";
+      "http://nodejsversion2-env.eba-am5du3km.us-east-2.elasticbeanstalk.com/api";
     url += "/" + data.keyword;
     url += "/" + data.distance;
     url += "/" + data.category;

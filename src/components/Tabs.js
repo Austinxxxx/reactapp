@@ -42,8 +42,12 @@ const Tabs = ({ data, keyword, handleBack }) => {
       });
   };
 
+  const [artist, setArtist] = useState();
+  const fetchartist = () => {};
+
   useEffect(() => {
     fetchdata();
+    fetchartist();
   }, []);
 
   return (
@@ -52,16 +56,21 @@ const Tabs = ({ data, keyword, handleBack }) => {
         <div className="Tabs">
           <div>
             <p onClick={() => handleBack(0)}>back</p>
-            <h3 style={{ textAlign: "center" }}>{data.name}</h3>
-            <FaRegGrinHearts
-              onClick={() => favit(data)}
-              style={{
-                float: "left",
-                display: "inline-block",
-                textAlign: "center",
-                display: "flex",
-              }}
-            />
+            <div className="row g-3">
+              <h3 className="col-md-10" style={{ textAlign: "center" }}>
+                {data.name}
+              </h3>
+              <FaRegGrinHearts
+                className="col-md-2"
+                onClick={() => favit(data)}
+                style={{
+                  float: "left",
+                  display: "inline-block",
+                  textAlign: "center",
+                }}
+                size="40"
+              />
+            </div>
           </div>
           {/*<h2 onClick={() => favit(data)}>heart</h2>*/}
           <div>
@@ -86,7 +95,7 @@ const Tabs = ({ data, keyword, handleBack }) => {
           </div>
           <div className="outlet">
             <Events id="1" activeId={activeId} eventDetail={data} />
-            <Artists id="2" activeId={activeId} artists={data} />
+            <Artists id="2" activeId={activeId} data={data} />
             <Venue id="3" activeId={activeId} venue={venue} />
           </div>
         </div>
