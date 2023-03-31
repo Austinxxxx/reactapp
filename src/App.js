@@ -25,15 +25,22 @@ function App() {
     setIndex(index);
     setTab(1);
   };
+  //checkbox
+  const [check, setCheck] = useState(0);
+  const checkbox = (id) => {
+    setCheck(id);
+  };
 
   //App收集Form的数据，call backend，得到api data，render Table 和 其他
   const [backendData, setBackendData] = useState([]);
   const formRef = useRef();
   const save = () => {
     const formData = new FormData(formRef.current);
+    console.log(formData);
     const data = Object.fromEntries(formData);
     fetchdata(data);
   };
+
   const fetchdata = (data) => {
     var url =
       "http://nodejsversion2-env.eba-am5du3km.us-east-2.elasticbeanstalk.com/api";
@@ -50,22 +57,27 @@ function App() {
         setBackendData(data["_embedded"]["events"]);
       });
   };
-  /*
-  useEffect(() => {
-    fetchdata();
-  }, []);
-  */
 
   return (
     <div>
-      <div className="page-switch">
-        <p onClick={() => handleClick(0)}>Search</p>
-        <p onClick={() => handleClick(1)}>Favorite</p>
+      <div
+        className="page-switch"
+        style={{ display: "flex", marginLeft: "21px", float: "right" }}
+      >
+        <p style={{ fontSize: "30px" }} onClick={() => handleClick(0)}>
+          Search
+        </p>
+        <p
+          style={{ marginLeft: "21px", marginRight: "20px", fontSize: "30px" }}
+          onClick={() => handleClick(1)}
+        >
+          Favorite
+        </p>
       </div>
 
       {activePage == 0 ? (
         <div>
-          <Form ref={formRef} />
+          <Form checkbox={checkbox} ref={formRef} />
           <button
             style={{
               background: "orangered",

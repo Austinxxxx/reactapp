@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { forwardRef } from "react";
 
-const Form = (_, ref) => {
+const Form = (prop, ref) => {
   function onsubmit_query(e) {
     e.preventDefault();
   }
 
+  // 0: not checked. Manual
+  const [auto, setAuto] = useState(0);
+  const handleCheck = () => {
+    if (auto == 0) {
+      setAuto(1);
+      prop.checkbox(1);
+    } else {
+      setAuto(0);
+      prop.checkbox(0);
+    }
+  };
   return (
     <div className="search-form">
       <h4 style={{ textAlign: "center" }}>Events Search</h4>
@@ -32,7 +43,7 @@ const Form = (_, ref) => {
           />
         </div>
 
-        <div className="col-md-4">
+        <div className="col-md-4 col-sm-12">
           <label>Distance</label>
           <input
             className="form-control"
@@ -43,7 +54,7 @@ const Form = (_, ref) => {
             style={{ marginRight: "20px" }}
           />
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 col-sm-12">
           <label>Category</label>
           <select
             className="form-control"
@@ -59,23 +70,26 @@ const Form = (_, ref) => {
             <option value="miscellaneous">Miscellaneous</option>
           </select>
         </div>
+        {auto == 0 ? (
+          <div className="form-group" style={{ marginTop: "10px" }}>
+            <label>Location</label>
+            <input
+              className="form-control"
+              type="text"
+              id="location"
+              name="location"
+              placeholder="Location"
+            />
+          </div>
+        ) : null}
 
-        <div className="form-group" style={{ marginTop: "10px" }}>
-          <label>Location</label>
-          <input
-            className="form-control"
-            type="text"
-            id="location"
-            name="location"
-            placeholder="Location"
-          />
-        </div>
         <div className="form-group">
           <label>
             <input
               id="checkbox"
               type="checkbox"
-              //onChange="handle_check(this)"
+              name="checkbox"
+              onChange={() => handleCheck()}
               style={{ float: "left" }}
             />
             Auto-Detect Location

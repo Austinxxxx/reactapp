@@ -76,17 +76,26 @@ const Tabs = ({ data, keyword, handleBack }) => {
           <div>
             <ul className="nav justify-content-center" style={ulstyle}>
               <li className="nav-item">&nbsp; &nbsp; </li>
-              <li className="nav-item" onClick={() => handleClick("1")}>
+              <li
+                className="nav-item col-md-3 col-sm-12"
+                onClick={() => handleClick("1")}
+              >
                 Events
               </li>
               <li>&nbsp; &nbsp; </li>
               <li>&nbsp; &nbsp; </li>
-              <li className="nav-item" onClick={() => handleClick("2")}>
+              <li
+                className="nav-item col-md-3 col-sm-12"
+                onClick={() => handleClick("2")}
+              >
                 Artists/Teams
               </li>
               <li>&nbsp; &nbsp; </li>
               <li>&nbsp; &nbsp; </li>
-              <li className="nav-item" onClick={() => handleClick("3")}>
+              <li
+                className="nav-item col-md-3 col-sm-12"
+                onClick={() => handleClick("3")}
+              >
                 Venue
               </li>
               <li>&nbsp; &nbsp; </li>
